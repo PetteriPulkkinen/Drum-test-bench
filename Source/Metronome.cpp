@@ -31,8 +31,7 @@ void Metronome::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
 {
     clickBufferIndex = 0;
     this->sampleRate = sampleRate;
-    int samples = 60/(double)this->tempo*this->sampleRate;
-    clickBuffer.setSize(clickBuffer.getNumChannels(), samples, true);
+    this->setTempo(this->tempo);
 }
 
 void Metronome::getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill)
@@ -58,4 +57,11 @@ void Metronome::getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill)
 void Metronome::releaseResources()
 {
     // Must be implemented
+}
+
+void Metronome::setTempo(short tempo)
+{
+    this->tempo = tempo;
+    int samples = 60/(double)this->tempo*this->sampleRate;
+    clickBuffer.setSize(clickBuffer.getNumChannels(), samples, true);
 }

@@ -17,10 +17,7 @@ class Metronome: public AudioSource
 public:
     Metronome();
     
-    void setTempo(short tempo)
-    {
-        tempo = tempo;
-    }
+    void setTempo(short tempo);
     
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
     
