@@ -32,5 +32,6 @@ private:
     double tempo; // clicks per second
     double sampleRate;
     AudioBuffer<float> clickBuffer;
+    AudioBuffer<float> playBuffer;
     int clickBufferIndex;
 };
