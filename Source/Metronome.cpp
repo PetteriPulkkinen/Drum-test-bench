@@ -14,7 +14,7 @@
 
 Metronome::Metronome()
 {
-    File file = File("/Users/petteripulkkinen/DSP/Projects/Drum Test Bench/Resources/click.wav");
+    File file = File("/Users/petteripulkkinen/DSP/Projects/Drum Test Bench/Resources/click2.mp3");
     jassert(file.existsAsFile());
     AudioFormatManager format_manager;
     format_manager.registerBasicFormats();
