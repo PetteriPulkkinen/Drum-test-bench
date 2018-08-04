@@ -29,7 +29,6 @@ public:
     
 
 private:
-    File clickSample;
     double tempo; // clicks per second
     double sampleRate;
     AudioBuffer<float> clickBuffer;

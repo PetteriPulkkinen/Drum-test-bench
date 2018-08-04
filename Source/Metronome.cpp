@@ -15,7 +15,7 @@
 Metronome::Metronome()
 {
     File file = File("/Users/petteripulkkinen/DSP/Projects/Drum Test Bench/Resources/click2.mp3");
-    jassert(clickSample.existsAsFile());
+    jassert(file.existsAsFile());
     AudioFormatManager format_manager;
     format_manager.registerBasicFormats();
     ScopedPointer<AudioFormatReader> reader = format_manager.createReaderFor(file);
