@@ -50,7 +50,7 @@ public:
 
         // For more details, see the help for AudioProcessor::prepareToPlay()
         testbench.PrepareToRecord(sampleRate);
-        metronome.prepareToPlay(sampleRate);
+        metronome.prepareToPlay(samplesPerBlockExpected, sampleRate);
     }
 
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
@@ -63,15 +63,9 @@ public:
         // (to prevent the output of random noise)
         if (testbench.isRecording()){
             
-            const float* inBuffer = bufferToFill.buffer->getReadPointer (0,
-                                                                         bufferToFill.startSample);
+            const float* inBuffer = bufferToFill.buffer->getReadPointer (0, bufferToFill.startSample);
             testbench.addBlockToBuffer(inBuffer, bufferToFill.numSamples);
         }
-        
-        float* outBuffer = bufferToFill.buffer->getWritePointer(0, bufferToFill.startSample);
-        metronome.addBlockToBuffer(outBuffer, bufferToFill.numSamples);
-        
-        //bufferToFill.clearActiveBufferRegion();
     }
 
     void releaseResources() override

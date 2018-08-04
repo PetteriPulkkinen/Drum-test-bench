@@ -12,7 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-class Metronome
+class Metronome: public AudioSource
 {
 public:
     Metronome();
@@ -22,9 +22,11 @@ public:
         tempo = tempo;
     }
     
-    void prepareToPlay(double sampleRate);
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
     
-    void addBlockToBuffer(float* buffer, int numSamples);
+    void releaseResources();
+    
+    void getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill);
     
 
 private:
