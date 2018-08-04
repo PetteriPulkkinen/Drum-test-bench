@@ -66,6 +66,7 @@ public:
             const float* inBuffer = bufferToFill.buffer->getReadPointer (0, bufferToFill.startSample);
             testbench.addBlockToBuffer(inBuffer, bufferToFill.numSamples);
         }
+        metronome.getNextAudioBlock(bufferToFill);
     }
 
     void releaseResources() override

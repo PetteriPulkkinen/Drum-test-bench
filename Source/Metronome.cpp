@@ -36,12 +36,12 @@ void Metronome::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
 }
 
 void Metronome::getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill)
-{/*
-    for (int c = 0; c < this->clickBuffer.getNumChannels(); c++)
+{
+    for (int c = 0; c < bufferToFill.buffer->getNumChannels(); c++)
     {
-        for (int i = 0; i < numSamples; i++)
+        for (int i = 0; i < bufferToFill.numSamples; i++)
         {
-            buffer[i] = this->clickBuffer.getSample(c, this->clickBufferIndex);
+            bufferToFill.buffer->addSample(c, i, this->clickBuffer.getSample(0, this->clickBufferIndex));
             if (clickBufferIndex + 1 == clickBuffer.getNumSamples())
             {
                 clickBufferIndex = 0;
@@ -52,7 +52,7 @@ void Metronome::getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill)
             }
             
         }
-    }*/
+    }
 }
 
 void Metronome::releaseResources()
