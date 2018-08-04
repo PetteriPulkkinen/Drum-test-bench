@@ -28,6 +28,7 @@ public:
         // specify the number of input and output channels that we want to open
         setAudioChannels (1, 1);
         pgif.tb = &testbench;
+        pgif.m = &metronome;
         gui.init(&pgif);
         
         addAndMakeVisible(gui);

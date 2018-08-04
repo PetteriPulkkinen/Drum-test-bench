@@ -17,7 +17,9 @@ class Metronome: public AudioSource
 public:
     Metronome();
     
-    void setTempo(short tempo);
+    void setTempo(double tempo);
+    
+    double getTempo() {return this->tempo;}
     
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
     
@@ -27,7 +29,8 @@ public:
     
 
 private:
-    short tempo; // clicks per second
+    File clickSample;
+    double tempo; // clicks per second
     double sampleRate;
     AudioBuffer<float> clickBuffer;
     int clickBufferIndex;

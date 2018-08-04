@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.2.0
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -22,9 +22,11 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "testbench.h"
+#include "Metronome.h"
 
 typedef struct {
     TestBench* tb;
+    Metronome* m;
 } PGIF;
 
 //[/Headers]
@@ -43,7 +45,7 @@ typedef struct {
 class GUI  : public Component,
              public Button::Listener,
              public Slider::Listener,
-public Timer
+             public Timer
 {
 public:
     //==============================================================================
@@ -56,6 +58,7 @@ public:
         pgif = interface;
         slider->setValue((double) pgif->tb->getN());
         slider2->setValue((double) pgif->tb->getTime());
+        slider3->setValue((double) pgif->m->getTempo());
     }
 
     void timerCallback() override;
@@ -76,17 +79,18 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<TextButton> textButton;
-    ScopedPointer<TextButton> textButton2;
-    ScopedPointer<Label> timenum;
-    ScopedPointer<Label> scorenum;
-    ScopedPointer<Label> highnum;
-    ScopedPointer<Slider> slider;
-    ScopedPointer<Slider> slider2;
-    ScopedPointer<TextButton> textButton3;
-    ScopedPointer<Label> label;
-    ScopedPointer<Label> label2;
-    ScopedPointer<Label> label3;
+    std::unique_ptr<TextButton> textButton;
+    std::unique_ptr<TextButton> textButton2;
+    std::unique_ptr<Label> timenum;
+    std::unique_ptr<Label> scorenum;
+    std::unique_ptr<Label> highnum;
+    std::unique_ptr<Slider> slider;
+    std::unique_ptr<Slider> slider2;
+    std::unique_ptr<TextButton> textButton3;
+    std::unique_ptr<Label> label;
+    std::unique_ptr<Label> label2;
+    std::unique_ptr<Label> label3;
+    std::unique_ptr<Slider> slider3;
 
 
     //==============================================================================

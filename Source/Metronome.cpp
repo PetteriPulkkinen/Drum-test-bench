@@ -15,7 +15,7 @@
 Metronome::Metronome()
 {
     File file = File("/Users/petteripulkkinen/DSP/Projects/Drum Test Bench/Resources/click2.mp3");
-    jassert(file.existsAsFile());
+    jassert(clickSample.existsAsFile());
     AudioFormatManager format_manager;
     format_manager.registerBasicFormats();
     ScopedPointer<AudioFormatReader> reader = format_manager.createReaderFor(file);
@@ -59,7 +59,7 @@ void Metronome::releaseResources()
     // Must be implemented
 }
 
-void Metronome::setTempo(short tempo)
+void Metronome::setTempo(double tempo)
 {
     this->tempo = tempo;
     int samples = 60/(double)this->tempo*this->sampleRate;
