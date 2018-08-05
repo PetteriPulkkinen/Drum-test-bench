@@ -11,6 +11,7 @@
 #include "Metronome.h"
 #include "assert.h"
 #include <stdio.h>
+#include <cmath>
 
 Metronome::Metronome()
 {
@@ -23,6 +24,7 @@ Metronome::Metronome()
     
     clickBuffer.setSize(reader->numChannels, (int)reader->lengthInSamples);
     reader->read(&clickBuffer, 0, clickBuffer.getNumSamples(), 0, true, true);
+    sampleRateFile = reader->sampleRate;
     
     tempo = 120;
     tempoSet = false;
@@ -32,6 +34,9 @@ void Metronome::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
 {
     clickBufferIndex = 0;
     this->sampleRate = sampleRate;
+    
+    this->scaleSamplingRate();
+    
     this->setTempo(this->tempo);
     tempoSet = true;
 }
@@ -98,4 +103,41 @@ void Metronome::setTempo(double tempo)
     }
     
     this->tempoSet = true;
+}
+
+void Metronome::scaleSamplingRate()
+{
+    int factor = floor(sampleRate/sampleRateFile);
+    AudioBuffer<float> *new_buffer = new AudioBuffer<float>(clickBuffer.getNumChannels(), clickBuffer.getNumSamples() * factor);
+    AudioBuffer<float> old_buffer = AudioBuffer<float>(clickBuffer);
+    
+    if (factor > 1)
+    {
+        for (int i = 0; i < clickBuffer.getNumSamples(); i++)
+        {
+            new_buffer->addSample(0, i+i*(factor-1), clickBuffer.getSample(0, i));
+            for (int j = 1; j < factor; j++){
+                new_buffer->addSample(0, i+i*(factor-1) + j, 0);
+            }
+        }
+        
+        // Filter out aliased components
+        IIRCoefficients coefs = IIRCoefficients();
+        coefs = coefs.makeLowPass(sampleRate, floor(sampleRateFile/2));
+        IIRFilter lpFilter = IIRFilter();
+        lpFilter.setCoefficients(coefs);
+        lpFilter.processSamples(new_buffer->getWritePointer(0), new_buffer->getNumSamples());
+        
+        for (int i = 0; i < new_buffer->getNumSamples(); i++)
+        {
+            std::cout << new_buffer->getSample(0, i) << std::endl;
+        }
+    }
+    else
+    {
+        throw "Not implemented!";
+    }
+    
+    clickBuffer.clear();
+    clickBuffer = AudioBuffer(*new_buffer);
 }

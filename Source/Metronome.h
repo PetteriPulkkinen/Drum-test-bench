@@ -30,10 +30,12 @@ public:
 
 private:
     void setTempo(double tempo);
+    void scaleSamplingRate();
     
     
     double tempo; // clicks per second
     double sampleRate;
+    double sampleRateFile;
     AudioBuffer<float> clickBuffer;
     AudioBuffer<float> playBuffer;
     int clickBufferIndex;
