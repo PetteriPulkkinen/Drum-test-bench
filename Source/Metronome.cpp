@@ -107,37 +107,35 @@ void Metronome::setTempo(double tempo)
 
 void Metronome::scaleSamplingRate()
 {
-    int factor = floor(sampleRate/sampleRateFile);
-    AudioBuffer<float> *new_buffer = new AudioBuffer<float>(clickBuffer.getNumChannels(), clickBuffer.getNumSamples() * factor);
-    AudioBuffer<float> old_buffer = AudioBuffer<float>(clickBuffer);
+    int factor = ceil(sampleRate/sampleRateFile);
+    AudioBuffer<float> oldBuffer = AudioBuffer<float>(clickBuffer);
+    clickBuffer.clear();
+    clickBuffer.setSize(1, oldBuffer.getNumSamples() * factor);
     
     if (factor > 1)
     {
-        for (int i = 0; i < clickBuffer.getNumSamples(); i++)
+        for (int i = 0; i < oldBuffer.getNumSamples(); i++)
         {
-            new_buffer->addSample(0, i+i*(factor-1), clickBuffer.getSample(0, i));
+            clickBuffer.addSample(0, i+i*(factor-1), oldBuffer.getSample(0, i));
             for (int j = 1; j < factor; j++){
-                new_buffer->addSample(0, i+i*(factor-1) + j, 0);
+                clickBuffer.addSample(0, i+i*(factor-1) + j, 0);
             }
         }
         
         // Filter out aliased components
         IIRCoefficients coefs = IIRCoefficients();
-        coefs = coefs.makeLowPass(sampleRate, floor(sampleRateFile/2));
+        coefs = coefs.makeLowPass(sampleRate, floor(sampleRateFile/8), 5);
         IIRFilter lpFilter = IIRFilter();
         lpFilter.setCoefficients(coefs);
-        lpFilter.processSamples(new_buffer->getWritePointer(0), new_buffer->getNumSamples());
+        lpFilter.processSamples(clickBuffer.getWritePointer(0), clickBuffer.getNumSamples());
         
-        for (int i = 0; i < new_buffer->getNumSamples(); i++)
+        for (int i = 0; i < clickBuffer.getNumSamples(); i++)
         {
-            std::cout << new_buffer->getSample(0, i) << std::endl;
+            std::cout << clickBuffer.getSample(0, i) << std::endl;
         }
     }
     else
     {
         throw "Not implemented!";
     }
-    
-    clickBuffer.clear();
-    clickBuffer = AudioBuffer(*new_buffer);
 }
