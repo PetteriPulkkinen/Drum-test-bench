@@ -120,7 +120,7 @@ GUI::GUI ()
     slider3.reset (new Slider ("new slider"));
     addAndMakeVisible (slider3.get());
     slider3->setRange (40, 250, 1);
-    slider3->setSliderStyle (Slider::LinearVertical);
+    slider3->setSliderStyle (Slider::IncDecButtons);
     slider3->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
     slider3->addListener (this);
 
@@ -178,18 +178,18 @@ void GUI::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    textButton->setBounds (proportionOfWidth (0.5000f) - (proportionOfWidth (0.2990f) / 2), proportionOfHeight (0.0949f), proportionOfWidth (0.2990f), proportionOfHeight (0.0802f));
-    textButton2->setBounds (proportionOfWidth (0.7412f) - (proportionOfWidth (0.2990f) / 2), proportionOfHeight (0.8101f) - (proportionOfHeight (0.0675f) / 2), proportionOfWidth (0.2990f), proportionOfHeight (0.0675f));
-    timenum->setBounds (proportionOfWidth (0.5916f), proportionOfHeight (0.2700f), 72, 24);
-    scorenum->setBounds (proportionOfWidth (0.5916f), proportionOfHeight (0.3544f), 72, 24);
-    highnum->setBounds (proportionOfWidth (0.5916f), proportionOfHeight (0.4388f), 72, 24);
-    slider->setBounds (proportionOfWidth (0.0515f), proportionOfHeight (0.8629f) - proportionOfHeight (0.2553f), 70, proportionOfHeight (0.2553f));
-    slider2->setBounds (proportionOfWidth (0.2830f), proportionOfHeight (0.8629f) - proportionOfHeight (0.2553f), 70, proportionOfHeight (0.2553f));
-    textButton3->setBounds (proportionOfWidth (0.5916f), proportionOfHeight (0.6414f), proportionOfWidth (0.2990f), proportionOfHeight (0.0675f));
-    label->setBounds (proportionOfWidth (0.5916f) + -50 - 72, proportionOfHeight (0.2700f) + 0, 72, 24);
-    label2->setBounds (proportionOfWidth (0.5916f) + -50 - 72, proportionOfHeight (0.3544f) + 0, 72, 24);
-    label3->setBounds (proportionOfWidth (0.5916f) + -50 - 103, proportionOfHeight (0.4388f) + 0, 103, 24);
-    slider3->setBounds (proportionOfWidth (0.1623f), proportionOfHeight (0.2002f), proportionOfWidth (0.0593f), proportionOfHeight (0.2821f));
+    textButton->setBounds (proportionOfWidth (0.4996f) - (proportionOfWidth (0.2990f) / 2), proportionOfHeight (0.0944f), proportionOfWidth (0.2990f), proportionOfHeight (0.0796f));
+    textButton2->setBounds (proportionOfWidth (0.7408f) - (proportionOfWidth (0.2990f) / 2), proportionOfHeight (0.8106f) - (proportionOfHeight (0.0671f) / 2), proportionOfWidth (0.2990f), proportionOfHeight (0.0671f));
+    timenum->setBounds (proportionOfWidth (0.5913f), proportionOfHeight (0.2696f), 72, 24);
+    scorenum->setBounds (proportionOfWidth (0.5913f), proportionOfHeight (0.3550f), 72, 24);
+    highnum->setBounds (proportionOfWidth (0.5913f), proportionOfHeight (0.4391f), 72, 24);
+    slider->setBounds (proportionOfWidth (0.0511f), proportionOfHeight (0.8623f) - proportionOfHeight (0.2548f), 70, proportionOfHeight (0.2548f));
+    slider2->setBounds (proportionOfWidth (0.2833f), proportionOfHeight (0.8623f) - proportionOfHeight (0.2548f), 70, proportionOfHeight (0.2548f));
+    textButton3->setBounds (proportionOfWidth (0.5913f), proportionOfHeight (0.6416f), proportionOfWidth (0.2990f), proportionOfHeight (0.0671f));
+    label->setBounds (proportionOfWidth (0.5913f) + -50 - 72, proportionOfHeight (0.2696f) + 0, 72, 24);
+    label2->setBounds (proportionOfWidth (0.5913f) + -50 - 72, proportionOfHeight (0.3550f) + 0, 72, 24);
+    label3->setBounds (proportionOfWidth (0.5913f) + -50 - 103, proportionOfHeight (0.4391f) + 0, 103, 24);
+    slider3->setBounds (proportionOfWidth (0.0695f), proportionOfHeight (0.2003f), proportionOfWidth (0.0810f), proportionOfHeight (0.2821f));
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -312,40 +312,40 @@ BEGIN_JUCER_METADATA
                  initialHeight="667">
   <BACKGROUND backgroundColour="ffc03b3b"/>
   <TEXTBUTTON name="new button" id="20981b42f581d91a" memberName="textButton"
-              virtualName="" explicitFocusOrder="0" pos="49.962%c 9.443% 29.902% 7.964%"
+              virtualName="" explicitFocusOrder="0" pos="50%c 9.516% 29.957% 8.013%"
               buttonText="Start" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="e4b5af20fb96c98" memberName="textButton2"
-              virtualName="" explicitFocusOrder="0" pos="74.08%c 81.058%c 29.902% 6.712%"
+              virtualName="" explicitFocusOrder="0" pos="74.023%c 81.135%c 29.957% 6.678%"
               buttonText="Calibrate" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="timenum" id="e6cc714430292fb2" memberName="timenum" virtualName=""
-         explicitFocusOrder="0" pos="59.128% 26.962% 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="59.19% 27.045% 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="0" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="20.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <LABEL name="scorenum" id="ea0d6984061c4288" memberName="scorenum" virtualName=""
-         explicitFocusOrder="0" pos="59.128% 35.495% 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="59.19% 35.559% 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="0" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="20.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <LABEL name="highnum" id="75ba19dea2e0aced" memberName="highnum" virtualName=""
-         explicitFocusOrder="0" pos="59.128% 43.914% 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="59.19% 43.907% 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="0" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="20.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="d91aea79d68904bd" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="5.109% 86.234%r 70 25.484%" min="512.00000000000000000000"
+          explicitFocusOrder="0" pos="5.065% 86.311%r 70 25.543%" min="512.00000000000000000000"
           max="2048.00000000000000000000" int="1.00000000000000000000"
           style="LinearVertical" textBoxPos="TextBoxLeft" textBoxEditable="1"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.00000000000000000000"
           needsCallback="1"/>
   <SLIDER name="new slider" id="f1bc1b479f2d8ae3" memberName="slider2"
-          virtualName="" explicitFocusOrder="0" pos="28.325% 86.234%r 70 25.484%"
+          virtualName="" explicitFocusOrder="0" pos="28.365% 86.311%r 70 25.543%"
           min="1.00000000000000000000" max="60.00000000000000000000" int="1.00000000000000000000"
           style="LinearVertical" textBoxPos="TextBoxLeft" textBoxEditable="1"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.00000000000000000000"
           needsCallback="1"/>
   <TEXTBUTTON name="new button" id="304faab1a0cf478d" memberName="textButton3"
-              virtualName="" explicitFocusOrder="0" pos="59.128% 64.164% 29.902% 6.712%"
+              virtualName="" explicitFocusOrder="0" pos="59.19% 64.107% 29.957% 6.678%"
               buttonText="Update" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="bebf8d8538b240af" memberName="label" virtualName=""
          explicitFocusOrder="0" pos="-50r 0 72 24" posRelativeX="e6cc714430292fb2"
@@ -366,9 +366,9 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="20.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="da3efcf980734916" memberName="slider3"
-          virtualName="" explicitFocusOrder="0" pos="16.228% 20.023% 5.935% 28.214%"
+          virtualName="" explicitFocusOrder="0" pos="6.946% 20.033% 8.104% 28.214%"
           min="40.00000000000000000000" max="250.00000000000000000000"
-          int="1.00000000000000000000" style="LinearVertical" textBoxPos="TextBoxLeft"
+          int="1.00000000000000000000" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.00000000000000000000"
           needsCallback="1"/>
 </JUCER_COMPONENT>
