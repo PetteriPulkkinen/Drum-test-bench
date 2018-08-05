@@ -26,7 +26,7 @@ public:
         setSize (r.getWidth(), r.getHeight());
 
         // specify the number of input and output channels that we want to open
-        setAudioChannels (1, 1);
+        setAudioChannels (1, 2);
         pgif.tb = &testbench;
         pgif.m = &metronome;
         gui.init(&pgif);
@@ -67,6 +67,7 @@ public:
             const float* inBuffer = bufferToFill.buffer->getReadPointer (0, bufferToFill.startSample);
             testbench.addBlockToBuffer(inBuffer, bufferToFill.numSamples);
         }
+        bufferToFill.clearActiveBufferRegion();
         metronome.getNextAudioBlock(bufferToFill);
     }
 
