@@ -17,7 +17,7 @@ class Metronome: public AudioSource
 public:
     Metronome();
     
-    void setTempo(double tempo);
+    void setTempoRequest(double tempo){this->tempo = tempo; this->tempoSet = false;}
     
     double getTempo() {return this->tempo;}
     
@@ -29,9 +29,13 @@ public:
     
 
 private:
+    void setTempo(double tempo);
+    
+    
     double tempo; // clicks per second
     double sampleRate;
     AudioBuffer<float> clickBuffer;
     AudioBuffer<float> playBuffer;
     int clickBufferIndex;
+    bool tempoSet;
 };

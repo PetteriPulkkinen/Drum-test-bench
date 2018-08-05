@@ -25,6 +25,7 @@ Metronome::Metronome()
     reader->read(&clickBuffer, 0, clickBuffer.getNumSamples(), 0, true, true);
     
     tempo = 120;
+    tempoSet = false;
 }
 
 void Metronome::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
@@ -32,11 +33,15 @@ void Metronome::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
     clickBufferIndex = 0;
     this->sampleRate = sampleRate;
     this->setTempo(this->tempo);
+    tempoSet = true;
 }
 
 void Metronome::getNextAudioBlock (const AudioSourceChannelInfo &bufferToFill)
 {
-    
+    if (tempoSet == false)
+    {
+        setTempo(tempo);
+    }
     for (int i = 0; i < bufferToFill.numSamples; i++)
     {
         for (int c = 0; c < bufferToFill.buffer->getNumChannels(); c++)
@@ -87,5 +92,10 @@ void Metronome::setTempo(double tempo)
         }
     }
     
-    this->clickBufferIndex = 0;
+    if (clickBufferIndex > playBuffer.getNumSamples())
+    {
+        clickBufferIndex = 0;
+    }
+    
+    this->tempoSet = true;
 }

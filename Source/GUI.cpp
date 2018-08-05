@@ -257,7 +257,7 @@ void GUI::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == slider3.get())
     {
         //[UserSliderCode_slider3] -- add your slider handling code here..
-        pgif->m->setTempo(slider3->getValue());
+        pgif->m->setTempoRequest(slider3->getValue());
         //[/UserSliderCode_slider3]
     }
 
